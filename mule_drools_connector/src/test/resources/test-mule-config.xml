@@ -1,0 +1,19 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:drools="http://www.mulesoft.org/schema/mule/drools"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+          http://www.mulesoft.org/schema/mule/drools http://www.mulesoft.org/schema/mule/drools/current/mule-drools.xsd">
+
+    <drools:config name="config" configId="configId">
+        <drools:connection requiredParameter="aValue" />
+    </drools:config>
+
+    <flow name="sayHiFlow">
+        <drools:say-hi person="Mariano Gonzalez"/>
+    </flow>
+
+    <flow name="retrieveInfoFlow">
+        <drools:retrieve-info config-ref="config"/>
+    </flow>
+
+</mule>
