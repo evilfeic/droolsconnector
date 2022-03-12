@@ -19,7 +19,7 @@ public class DroolsOperations {
 
 
   @MediaType(value = ANY, strict = false)
-  public <T> void executeRules(Object object, String ksessionName) {
+  public <T> void executeRules(Object[] objects, String ksessionName) {
     //return "Using Configuration [" + configuration.getConfigId() + "] with Connection id [" + connection.getId() + "]";
 
     try {
@@ -28,8 +28,12 @@ public class DroolsOperations {
       KieServices ks = KieServices.Factory.get();
       KieContainer kContainer = ks.getKieClasspathContainer();
       KieSession kSession = kContainer.newKieSession(ksessionName);
-
-      kSession.insert(object);
+      
+      for(Object o : objects)
+      {
+        ksession.insert(o);
+      }
+ 
       kSession.fireAllRules();
       kSession.dispose();
 
